@@ -39,9 +39,9 @@ app.get("/", (req, res) => {
   res.status(200).send("success");
 });
 
-app.post('/google-api-create-row', async (req, res) => {
+app.post(`/scarlettelove/:id`, async (req, res) => {
   try {
-    const response = await fetch(`http://scarlettelove.com/google-sheets-api/api/google-api-create-row`, {
+    const response = await fetch(`http://scarlettelove.com/google-sheets-api/api/${req.params.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,9 +56,9 @@ app.post('/google-api-create-row', async (req, res) => {
   }
 });
 
-app.post('example/google-api-create-row', async (req, res) => {
-  res.status(200).send('data:' + req.path)
-});
 
 // Export app for serverless functions in Vercel
-module.exports = app;
+// module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
