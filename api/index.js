@@ -49,9 +49,9 @@ app.get("/", (req, res) => {
 });
 
 app.post('/google-api-create-row', async (req, res) => {
-  const url = req.path
+  // const url = req.path
   try {
-    const response = await fetch(`https://scarlettelove.com/google-sheets-api/api${url}`, {
+    const response = await fetch(`https://scarlettelove.com/google-sheets-api/api/google-api-create-row`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
