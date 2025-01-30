@@ -42,6 +42,20 @@ app.use(express.json());
 //   }
 // }
 
+const allowedOrigins = [
+  'https://tandhconsult-vens-projects-e1aafec6.vercel.app/'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
 
 
 app.get("/", (req, res) => {
