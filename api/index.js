@@ -43,7 +43,8 @@ app.use(express.json());
 // }
 
 const allowedOrigins = [
-  'https://tandhconsult-vens-projects-e1aafec6.vercel.app/'
+  'https://tandhconsult-vens-projects-e1aafec6.vercel.app/',
+  'https://greyzone.vercel.app/'
 ];
 
 app.use(cors({
