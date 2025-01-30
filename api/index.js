@@ -50,23 +50,19 @@ app.get("/", (req, res) => {
 
 app.post('/google-api-create-row', async (req, res) => {
   // const url = req.path
-  try {
-    const response = await fetch(`https://scarlettelove.com/google-sheets-api/api/google-api-create-row`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(req.body),
-    });
+    try {
+      const response = await fetch(`http://scarlettelove.com/google-sheets-api/api/google-api-create-row`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(req.body),
+      });
 
-    if (!response.ok) {
-      throw new Error(`Fetch error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    res.status(200).json(data);
+      const data = await response.json();
+      res.status(200).send(data);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+      res.status(500).send('Error: ' + error.message);
   }
 });
 
