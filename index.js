@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { google } = require('googleapis');
+const fetch = require('node-fetch')
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -49,6 +50,24 @@ app.post("/", (req, res) => {
     .catch((error) => res.status(500).send(error.message));
   },200)
 });
+
+app.post('/google-api-create-row', async(req, res) => {
+  const url = req.path
+    try {
+      const response = await fetch(`http://scarlettelove.com/google-sheets-api/api${url}`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(req.body),
+      });
+
+      const data = await response.json();
+      res.status(200).send(data);
+  } catch (error) {
+      res.status(500).send('Error: ' + error.message);
+  }
+})
 
 // Start the server
 app.listen(PORT, () => {
