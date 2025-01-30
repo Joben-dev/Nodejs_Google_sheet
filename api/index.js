@@ -57,7 +57,7 @@ app.post('/google-api-create-row', async (req, res) => {
 });
 
 app.post('example/google-api-create-row', async (req, res) => {
-  res.status(200).data(req.path)
+  res.status(200).send('data:' + req.path)
 });
 
 // Export app for serverless functions in Vercel
