@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'https://greyzone.vercel.app', // This is the frontend that should be allowed
   'https://tandhconsult-vens-projects-e1aafec6.vercel.app', // Remove trailing slash
+  'http://localhost:5173'
 ];
 
 app.use(cors({
@@ -50,7 +51,11 @@ app.post(`/scarlettelove/:id`, async (req, res) => {
     });
 
     const data = await response.json();
-    res.status(200).send(data);
+    if(data.response){
+      res.status(200).send(data); 
+    }else{
+      res.status(200).send({'response': data.message});
+    }
   } catch (error) {
     res.status(500).send('Error: ' + error.message);
   }
