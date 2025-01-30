@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 // const { google } = require('googleapis');
 const fetch = require('node-fetch')
-
+const cors = require('cors');
 dotenv.config(); // Load environment variables from .env file
 
 const app = express();
