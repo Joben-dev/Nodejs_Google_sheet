@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000;
 
 // List of allowed origins
 const allowedOrigins = [
-  'https://greyzone.vercel.app', // This is the frontend that should be allowed
-  'https://tandhconsult-vens-projects-e1aafec6.vercel.app', // Remove trailing slash
+  // 'https://greyzone.vercel.app', // This is the frontend that should be allowed
+  // 'https://tandhconsult-vens-projects-e1aafec6.vercel.app', // Remove trailing slash
   'http://localhost:5173'
 ];
 
@@ -37,6 +37,7 @@ app.options('*', cors()); // Allow preflight requests for all routes
 app.use(express.json());
 
 app.get("/", (req, res) => {
+
   res.status(200).send("success");
 });
 
@@ -49,17 +50,18 @@ app.post(`/scarlettelove/:id`, async (req, res) => {
       },
       body: JSON.stringify(req.body),
     });
-
     const data = await response.json();
     if(data.response){
       res.status(200).send(data); 
     }else{
-      res.status(200).send({'response': data.message});
+      const keys = Object.keys(data)
+      res.status(200).send({'response': !data.message ? `${keys.join(' ').toUpperCase()} is required` : data.message,...data});
     }
   } catch (error) {
     res.status(500).send('Error: ' + error.message);
   }
 });
+console.log('here')
 
 
 // Export app for serverless functions in Vercel
