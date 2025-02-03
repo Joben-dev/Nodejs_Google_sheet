@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000;
 
 // List of allowed origins
 const allowedOrigins = [
-  // 'https://greyzone.vercel.app', // This is the frontend that should be allowed
-  // 'https://tandhconsult-vens-projects-e1aafec6.vercel.app', // Remove trailing slash
+  'https://greyzone.vercel.app', // This is the frontend that should be allowed
+  'https://tandhconsult-vens-projects-e1aafec6.vercel.app', // Remove trailing slash
   'http://localhost:5173'
 ];
 
