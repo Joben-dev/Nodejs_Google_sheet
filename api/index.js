@@ -55,17 +55,20 @@ app.post(`/scarlettelove/:id`, async (req, res) => {
       res.status(200).send(data); 
     }else{
       const keys = Object.keys(data)
-      res.status(200).send({'response': !data.message ? `${keys.join(' ').toUpperCase()} is required` : data.message,...data});
+      const edit = keys.map((word, indx)=> {
+        const a = word.charAt(0).toUpperCase() + word.slice(1)
+        return a.split('').map(res => res === '_' ? ' ' : res).join('')
+      }).join(', ')
+      res.status(200).send({'error': !data.message ? `${edit} is required` : data.message,...data});
     }
   } catch (error) {
     res.status(500).send('Error: ' + error.message);
   }
 });
-console.log('here')
 
 
 // Export app for serverless functions in Vercel
-module.exports = app;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}`);
-// });
+// module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
