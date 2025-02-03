@@ -68,7 +68,7 @@ app.post(`/scarlettelove/:id`, async (req, res) => {
 
 
 // Export app for serverless functions in Vercel
-// module.exports = app;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+module.exports = app;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
