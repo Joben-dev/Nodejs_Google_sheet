@@ -51,16 +51,16 @@ app.post(`/scarlettelove/:id`, async (req, res) => {
       body: JSON.stringify(req.body),
     });
     const data = await response.json();
-    if(data.response){
+    // if(data.response){
       res.status(200).send(data); 
-    }else{
-      const keys = Object.keys(data)
-      const edit = keys.map((word, indx)=> {
-        const a = word.charAt(0).toUpperCase() + word.slice(1)
-        return a.split('').map(res => res === '_' ? ' ' : res).join('')
-      }).join(', ')
-      res.status(200).send({'error': !data.message ? `${edit} is required` : data.message,...data});
-    }
+    // }else{
+    //   const keys = Object.keys(data)
+    //   const edit = keys.map((word, indx)=> {
+    //     const a = word.charAt(0).toUpperCase() + word.slice(1)
+    //     return a.split('').map(res => res === '_' ? ' ' : res).join('')
+    //   }).join(', ')
+    //   res.status(200).send({'error': !data.message ? `${edit} is required` : data.message,...data});
+    // }
   } catch (error) {
     res.status(500).send('Error: ' + error.message);
   }
